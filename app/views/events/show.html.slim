@@ -1,0 +1,105 @@
+.row
+  .col.s12.m12.margin-top-half
+    h3 = @event.title
+
+hr
+
+.row
+  .col.m8
+    h5 日時
+    = @event.event_date
+    br
+    h5 開催場所
+    = @event.place
+    p 住所
+    = @event.address
+    br
+    h5 イベント概要
+    = @event.description
+    - if @event.deadline?
+      p.red-text #{ @event.deadline }で参加締切です
+
+  .col.m4
+    - if @reservation
+      p.waves-effect.waves-light.cyan.p10
+        i.material-icons.white-text trending_up 参加予定です
+
+    - if @event.deadline #期限が設定されてるか判定
+      - if @event.active? && @reservation.nil? #期限内かつ予約がない
+        p もうすぐ締め切ります
+        = link_to reservations_path, class: 'waves-effect waves-light pink accent-3 btn z-depth-5', method: :post, data: { confirm: '参加しますか?' } do
+          i.material-icons.white-text play_arrow このイベントに参加する
+      - elsif !@event.active? #期限切れ
+        p.waves-effect.waves-light.lime.p10
+          i.material-icons.white-text done_all このイベントは締切りました
+    - elsif @event.deadline.nil? && @reservation.nil?#期限を設定してないかつ予約もない
+      p 参加期限が設定されていませんのでどんどん参加してください
+      = link_to reservations_path, class: 'waves-effect waves-light pink accent-3 btn z-depth-5', method: :post, data: { confirm: '参加しますか?' } do
+        i.material-icons.white-text play_arrow このイベントに参加する
+
+    - if @reservation
+      p
+        = link_to 'キャンセルする', reservation_path, method: :delete, 'data-confirm' => '予約をキャンセルして良いですか?'
+
+hr
+
+.row
+  .col.m4
+    p
+    - if user_signed_in?
+      - if current_user.id == @event.user_id
+        = link_to '編集', edit_event_path, class: 'btn btn-success'
+        = link_to '削除', event_path, method: :delete, class: 'btn btn-danger', 'data-confirm' => 'このイベントを本当に削除してもよいですか？'
+      - else
+        p
+  .col.m4
+    p イベント主催者
+    p
+      = link_to @organizer, user_path(@event.user_id) if user_signed_in?
+
+  .col.m4
+    p 参加者(#{ @participants.count })人
+    - @participants.each do |participant|
+      p = link_to participant.name, user_path(participant.id) if user_signed_in?
+.row
+  .col.m8
+
+    - if user_signed_in?
+      = form_for @comment do |f|
+        = f.label :body
+        = f.text_area :body
+        = f.hidden_field :user_id, value: current_user.id
+        = f.hidden_field :event_id, value: @event.id
+        = f.submit '送信!'
+      h5 コメント一覧
+      - @comments.each do |comment|
+        p.valign-wrapper
+          = image_tag avatar_url(comment.user), class: 'circle responsive-img'
+          = link_to comment.user.name, user_path(comment.user_id)
+          = comment.created_at
+
+        p.under-border = comment.body
+
+  .col.m4
+    p　ATND はイベント運営者・参加者のためのサービスです。おもしろい・たのしい・ためになる、そんなイベントや勉強会を個人で運営する人たちが増えています。でも運営者にとっては、告知から参加者の管理などわずらわしい作業が意外と多いもの。ATND（アテンド）は、そんなイベントや勉強会の開催をお手伝いするシンプルなサービスです。
+/Google Map
+.row
+  .col.m12
+    #map
+      script src='https://maps.googleapis.com/maps/api/js'
+      javascript:
+        function initialize() {
+          var mapCanvas = document.getElementById('map');
+          var mapOptions = {
+            center: new google.maps.LatLng(#{ @event.latitude }, #{ @event.longitude }),
+            zoom: 14,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          }
+          var map = new google.maps.Map(mapCanvas, mapOptions);
+          var marker = new google.maps.Marker({
+            position: new google.maps.LatLng( #{ @event.latitude }, #{ @event.longitude } ),
+            title: '場所'
+          });
+          marker.setMap(map);
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);

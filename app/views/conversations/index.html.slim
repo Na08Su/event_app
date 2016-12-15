@@ -1,0 +1,31 @@
+.row
+  .col.s12.m12
+    p
+      = current_user.name
+      | さんのメッセージやりとり一覧です
+hr
+    - @conversations.each do |conversation|
+      - another = conversation.get_another(current_user)
+      = link_to conversation_messages_path(conversation) do
+
+        .row
+          .col.m2
+            p.valign-wrapper
+              = image_tag avatar_url(another), class: 'circle responsive-img'
+
+          .col.m2
+            p
+              = another.name
+          .col.m2
+            = conversation.messages.last.try(:message_time) || ''
+          .col.m6
+            = conversation.messages.last.try(:content) || ''
+
+    h4 個人メッセージを送ることができるよ!
+    h4 All users!
+    - @users.each do |user|
+      - if user != current_user
+        p.valign-wrapper
+          = image_tag avatar_url(user), class: 'circle responsive-img'
+          = user.name
+          = link_to "メッセージを送る", conversations_path(sender_id: current_user.id, recipient_id: user.id), method: :post

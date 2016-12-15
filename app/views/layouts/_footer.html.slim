@@ -1,0 +1,20 @@
+footer.page-footer
+  .container
+    .row
+      .col.l8.s12
+        h5.white-text お知らせ
+        p.grey-text.text-lighten-4
+          | 楽しいイベントと出逢おう!
+
+        = render 'layouts/twitter'
+      .col.l4.offset-12.s12
+        h5.white-text お問い合わせ
+        ul.footer-left
+          a.grey-text.text-lighten-3 href='#!' メディア
+          li = link_to '会社概要', '#!', class: 'grey-text text-lighten-3'
+          li = link_to '機能追加のリクエスト', '#!', class: 'grey-text text-lighten-3'
+          li = link_to '利用規約', '#!', class: 'grey-text text-lighten-3'
+  .footer-copyright
+    .container
+      |
+        © 2016 Luxiar

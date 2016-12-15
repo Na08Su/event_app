@@ -1,0 +1,19 @@
+.row
+  .col.m12
+    h4.center
+      p.valign-wrapper.border-solid
+        = image_tag avatar_url(@user), class: 'circle responsive-img'
+        = "#{ @user.name }さんのマイページ"
+
+    - if @user != current_user
+      = link_to "#{ @user.name }にメッセージを送る", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post
+    - else
+      = link_to '個人メッセージBOX', conversations_path
+
+h5 参加予定のイベント一覧
+- @reservations.each do |reservation|
+  li = link_to reservation.event.title, event_path(reservation.event_id)
+  /reservationとeventがアソシエーションで結びついているのでこのように取り出すことができる
+h5 作成したイベント一覧
+- @events.each do |event|
+  li = link_to event.title, event_path(event.id)

@@ -1,0 +1,28 @@
+.row
+  h3.center イベントを新規作成
+  h5.center イベントの内容を設定してください
+  .col.m6.offset-m3.center
+
+    = form_for(@event) do |f|
+
+      = f.text_field :title, class: 'form-control', placeholder: 'タイトル(50字以内) *必須'
+
+      = f.text_area :description, class: 'form-control', placeholder: 'イベントの説明(250字以内) *必須'
+
+      = f.label '日時＊必須'
+      span
+      = f.datetime_local_field :event_date
+
+      = f.label '参加登録期限'
+
+      p = f.datetime_local_field :deadline
+      br
+
+      span
+      = f.text_field :place, placeholder: '開催場所＊必須'
+
+      = f.text_field :address, placeholder: '住所'
+
+      = f.hidden_field :user_id, value: current_user.id
+
+      = f.submit (@event.new_record? ? '新規登録' : '編集内容を保存する'), class: 'btn btn-success'

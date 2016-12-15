@@ -1,0 +1,129 @@
+@charset "UTF-8";
+/* 共通 */
+/* line 4, /Users/natsuki/atnd_clone/app/assets/stylesheets/application.css.scss */
+.red-text {
+  color: red;
+}
+
+/* line 9, /Users/natsuki/atnd_clone/app/assets/stylesheets/application.css.scss */
+#map {
+  width: 100%;
+  height: 400px;
+}
+
+/* header */
+/* line 15, /Users/natsuki/atnd_clone/app/assets/stylesheets/application.css.scss */
+.nav-wrapper {
+  background-color: white;
+  opacity: 1.0;
+}
+
+/* line 19, /Users/natsuki/atnd_clone/app/assets/stylesheets/application.css.scss */
+.material-icons {
+  color: gray;
+}
+
+/* line 22, /Users/natsuki/atnd_clone/app/assets/stylesheets/application.css.scss */
+.brand-logo {
+  margin-left: 15px;
+}
+
+/* line 26, /Users/natsuki/atnd_clone/app/assets/stylesheets/application.css.scss */
+#logo {
+  color: black;
+  opacity: 0.9;
+  font-size: 35px;
+}
+
+/* line 32, /Users/natsuki/atnd_clone/app/assets/stylesheets/application.css.scss */
+#none-style {
+  text-decoration: none;
+  color: #f1220f;
+  font-weight: bold;
+  border: 0.5px solid #f1220f;
+  border-radius: 3px;
+  opacity: 0.6;
+}
+
+/* line 41, /Users/natsuki/atnd_clone/app/assets/stylesheets/application.css.scss */
+#none-style:hover {
+  color: white;
+  background-color: #f1220f;
+  transition: all 0.4s;
+  font-weight: bold;
+}
+
+/* line 47, /Users/natsuki/atnd_clone/app/assets/stylesheets/application.css.scss */
+.text-color {
+  color: black;
+}
+
+/* line 50, /Users/natsuki/atnd_clone/app/assets/stylesheets/application.css.scss */
+input#q_title_cont {
+  width: 50%;
+  height: 4rem;
+  color: black;
+  opacity: 0.6;
+}
+
+/* line 56, /Users/natsuki/atnd_clone/app/assets/stylesheets/application.css.scss */
+.search-space {
+  padding-left: 20px;
+}
+
+/* form */
+/* line 61, /Users/natsuki/atnd_clone/app/assets/stylesheets/application.css.scss */
+.form-control {
+  margin-bottom: 15px;
+}
+
+/* comment一覧 */
+/* line 65, /Users/natsuki/atnd_clone/app/assets/stylesheets/application.css.scss */
+.under-border {
+  border-bottom: dotted 1px black;
+}
+
+/* flash-message */
+/* line 71, /Users/natsuki/atnd_clone/app/assets/stylesheets/application.css.scss */
+.success {
+  background-color: green;
+  opacity: 0.7;
+  color: white;
+}
+
+/* line 76, /Users/natsuki/atnd_clone/app/assets/stylesheets/application.css.scss */
+.error {
+  background-color: red;
+  opacity: 0.7;
+  color: white;
+}
+
+/* top */
+/* line 82, /Users/natsuki/atnd_clone/app/assets/stylesheets/application.css.scss */
+.mar-top {
+  margin-top: 90px;
+}
+
+/* line 85, /Users/natsuki/atnd_clone/app/assets/stylesheets/application.css.scss */
+.margin-top-half {
+  margin-top: 50px;
+}
+
+/* line 88, /Users/natsuki/atnd_clone/app/assets/stylesheets/application.css.scss */
+.p15 {
+  padding: 15px;
+}
+
+/* button */
+/* footer */
+/* line 98, /Users/natsuki/atnd_clone/app/assets/stylesheets/application.css.scss */
+.footer-left {
+  margin-left: 30px;
+}
+
+/* user#show */
+/* line 103, /Users/natsuki/atnd_clone/app/assets/stylesheets/application.css.scss */
+.border-solid {
+  border-bottom: solid 4px black;
+  padding: 10px;
+}

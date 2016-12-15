@@ -1,0 +1,8 @@
+= search_form_for @q, url: root_path do |f|
+  = f.search_field :title_cont, placeholder: 'イベント検索'
+  button.btn.btn-floating.btn-large.waves-effect.waves-light.red type='submit'
+    i.material-icons search
+/ @qをここで使いたくないとのこと後で修正
+
+
+

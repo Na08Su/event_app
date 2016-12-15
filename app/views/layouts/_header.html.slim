@@ -1,0 +1,43 @@
+.navbar-fixed
+  nav
+    .nav-wrapper
+      a.brand-logo href = '/' id = 'logo' ATND
+      a.button-collapse href ='#' data-activates='mobile-demo'
+        i.material-icons menu
+
+      ul.right.hide-on-med-and-down
+        - if !user_signed_in?
+          = link_to 'ログイン', new_user_session_path, class: 'text-color'
+          = link_to '新規登録', new_user_registration_path, class: 'text-color'
+        - else
+          li = render 'events/ransack'
+          li = link_to 'イベント作成', new_event_path, id: 'none-style'
+
+          li
+            a.dropdown-button href ='#' data-activates='dropdown1'
+              i.material-icons arrow_drop_down
+
+            ul.dropdown-content#dropdown1
+              li = link_to 'マイページ', user_path(current_user.id)
+              li = link_to '設定', edit_user_registration_path
+              li.divider
+              li = link_to 'ログアウト', destroy_user_session_path, method: :delete
+      ul#mobile-demo.side-nav
+        - if !user_signed_in?
+          li = link_to 'ログイン', new_user_session_path, class: 'text-color'
+          li = link_to '新規登録', new_user_registration_path, class: 'text-color'
+        -else
+          li = link_to 'イベント作成', new_event_path, id: 'none-style'
+          li
+            a.dropdown-button href='#' data-activates='dropdown2' アカウント
+
+            ul.dropdown-content#dropdown2
+              li = link_to 'マイページ', user_path(current_user.id)
+              li = link_to '設定', edit_user_registration_path
+              li.divider
+              li = link_to 'ログアウト', destroy_user_session_path, method: :delete
+          li.search-space = render 'events/ransack'
+
+javascript:
+  $(".dropdown-button").dropdown();
+  $('.button-collapse').sideNav();

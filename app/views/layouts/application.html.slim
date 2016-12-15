@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title Atnd_clone
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css"
+    link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"
+    script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"
+    = analytics_init if Rails.env.production?
+  body
+    = render 'layouts/header'
+    .container
+      = render 'layouts/announce'
+
+      = yield
+
+    = render 'layouts/footer'
+      = debug(params) if Rails.env.development?

@@ -1,0 +1,18 @@
+.row
+  .col.s12.m12.mar-top
+    h2.top-title.center 出逢いを創造するサービス
+
+
+.row
+  .col.s12.m6
+    h5.red-color New Event !
+    - @search_events.each do |event|
+      = render 'event_index_parts', event: event
+
+  .col.s12.m6
+    h5.navy-color Upcoming Events !
+    - @upcoming_events.each do |event|
+      = render 'event_index_parts', event: event
+
+/各パネルをホバーすると浮き上がるようにする
+/リンク範囲を広げる

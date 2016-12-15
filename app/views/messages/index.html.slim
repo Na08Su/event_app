@@ -1,0 +1,22 @@
+.row
+  .col.m3
+    p.valign-wrapper
+    = image_tag avatar_url(@another), class: 'circle responsive-img'
+    = link_to @another.name, @another
+
+  .col.m9
+    .panel.panel-default
+      .panel-heading
+        = @another.name
+        | さんとメッセージが出来ます
+      .panel-body
+        .container
+          = form_for [@conversation, @conversation.messages.new], remote: true do |f| #要復習
+            = f.text_area :content, placeholder: '個人メッセージです', class: 'form-control'
+            = f.hidden_field :user_id, value: current_user.id
+
+            = f.submit '送信!', class: 'btn btn-primary'
+
+    #chat
+      = render @messages, locals: { conversation: @conversation }
+

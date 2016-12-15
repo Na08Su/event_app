@@ -1,0 +1,11 @@
+.row
+  .col.m9
+    p.valign-wrapper
+      = image_tag avatar_url(message.user), class: 'circle'
+      span #{ message.user.name }
+    p
+      = message.content
+  .col.m3
+    p.pad-top
+      = message.message_time
+hr

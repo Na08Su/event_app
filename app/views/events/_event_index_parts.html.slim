@@ -1,0 +1,15 @@
+.card.z-depth-2
+  = link_to event_path(event.id), class: 'wide-link', id: 'none-style-top'
+    .card-image
+      h5.card-titleCard.p15
+        = event.title
+    .card-content
+      p = event.description
+
+    - if event.reservations.count > 0
+      p.p15 #{ event.reservations.count }人参加予定
+    p.date-color.p15 開催日 #{ event.event_date }
+
+
+
+
